@@ -1,31 +1,49 @@
 {
-  "Orders": [
-    {
-      "id": 1,
-      "ProductName": "Football",
-      "ProductType": "Sport Equipment",
-      "OrderDate": "2023-04-28",
-      "Quantity": 2,
-      "Price": "1500",
-      "ProductImage": "assets/images/Football.png"
-    },
-    {
-      "id": 2,
-      "ProductName": "T-Shirt",
-      "ProductType": "Garment",
-      "OrderDate": "2023-04-29",
-      "Quantity": 5,
-      "Price": "2000",
-      "ProductImage": "assets/images/T-shirt.jpg"
-    },
-    {
-      "id": 3,
-      "ProductName": "Dumbbell",
-      "ProductType": "Gym Equipment",
-      "OrderDate": "2023-04-28",
-      "Quantity": 1,
-      "Price": "800",
-      "ProductImage": "assets/images/dumbbell.jpg"
-    }
-  ]
+    "Orders": [
+        {
+            "id": 1,
+            "ProductName": "Football",
+            "ProductType": "Sport Equipment",
+            "OrderDate": "2023-04-28",
+            "Quantity": 2,
+            "Price": "1500",
+            "ProductImage": "assets/images/Football.png"
+        },
+        {
+            "id": 2,
+            "ProductName": "T-Shirt",
+            "ProductType": "Garment",
+            "OrderDate": "2023-04-29",
+            "Quantity": 5,
+            "Price": "2000",
+            "ProductImage": "assets/images/T-shirt.jpg"
+        },
+        {
+            "id": 3,
+            "ProductName": "Dumbbell",
+            "ProductType": "Gym Equipment",
+            "OrderDate": "2023-04-28",
+            "Quantity": 1,
+            "Price": "800",
+            "ProductImage": "assets/images/dumbbell.jpg"
+        },
+        {
+            "id": 4,
+            "ProductName": "Ear buds",
+            "ProductType": "Electronic Gadget",
+            "OrderDate": "2023-04-26",
+            "Quantity": 2,
+            "Price": "2000",
+            "ProductImage": "assets/images/earbuds.jpeg"
+        },
+        {
+            "id": 5,
+            "ProductName": "Handball",
+            "ProductType": "Sports Equipment",
+            "OrderDate": "2023-04-26",
+            "Quantity": 4,
+            "Price": "2400",
+            "ProductImage": "assets/images/handball.jpg"
+        }
+    ]
 }
