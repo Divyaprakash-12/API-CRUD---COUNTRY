@@ -8,12 +8,36 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <title>Orders</title>
+    <style>
+        body {
+            background: #FFEFBA;
+            background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);
+            background: linear-gradient(to right, #FFFFFF, #FFEFBA);
+            font-family: Times new roman;
+            font-size: x-large;
+            font-weight: bold;
+            font-style: oblique;
+        }
+        table{
+            font-family: Times new roman;
+            font-size: large;
+            font-weight: 500;
+            font-style:normal;
+        }
+        tr{
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
     <nav class="navbar navbar-light bg-info">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">MY ORDERS</span>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-dark" type="submit">Search</button>
+              </form>
         </div>
     </nav>
     <div class="container">
@@ -22,7 +46,7 @@
                 <h2>ORDER DETAILS
             </div>
             <div class="p-2 bd-highlight">
-                <button type="button" class="btn btn-outline-dark" onclick="ProductCreateBox()">Add Product</button>
+                <button type="button" class="btn btn-dark" onclick="ProductCreateBox()">Add Product</button>
             </div>
         </div>
         <hr>
@@ -37,7 +61,7 @@
                         <th scope="col">Quantity</th>
                         <th scope="col">Price</th>
                         <th scope="col">ProductImage</th>
-                        <th scope="col" colspan="2">Action</th>
+                        <th scope="col" colspan="2" style="text-align: center;">Action</th>
                     </tr>
                 </thead>
                 <tbody id="table1">

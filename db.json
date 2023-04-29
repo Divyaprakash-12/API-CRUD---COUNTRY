@@ -16,7 +16,7 @@
             "OrderDate": "2023-04-29",
             "Quantity": 5,
             "Price": "2000",
-            "ProductImage": "assets/images/T-shirt.jpg"
+            "ProductImage": "assets/images/T-shirt.png"
         },
         {
             "id": 3,
@@ -25,7 +25,7 @@
             "OrderDate": "2023-04-28",
             "Quantity": 1,
             "Price": "800",
-            "ProductImage": "assets/images/dumbbell.jpg"
+            "ProductImage": "assets/images/dumbbell.png"
         },
         {
             "id": 4,
@@ -34,7 +34,7 @@
             "OrderDate": "2023-04-26",
             "Quantity": 2,
             "Price": "2000",
-            "ProductImage": "assets/images/earbuds.jpeg"
+            "ProductImage": "assets/images/earbuds.png"
         },
         {
             "id": 5,
@@ -43,7 +43,7 @@
             "OrderDate": "2023-04-26",
             "Quantity": 4,
             "Price": "2400",
-            "ProductImage": "assets/images/handball.jpg"
+            "ProductImage": "assets/images/handball.png"
         }
     ]
 }
