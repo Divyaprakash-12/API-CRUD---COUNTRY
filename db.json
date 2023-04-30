@@ -44,6 +44,51 @@
             "Quantity": 4,
             "Price": "2400",
             "ProductImage": "assets/images/handball.png"
+        },
+        {
+            "id": 6,
+            "ProductName": "Bluetooth Speaker",
+            "ProductType": "Electronic Gadget",
+            "OrderDate": "2023-04-28",
+            "Quantity": 2,
+            "Price": "3000",
+            "ProductImage": "assets/images/speaker.png"
+        },
+        {
+            "id": 7,
+            "ProductName": "Cricket Bat",
+            "ProductType": "Sports Equipment",
+            "OrderDate": "2023-04-29",
+            "Quantity": 5,
+            "Price": "6000",
+            "ProductImage": "assets/images/GN-bat.png"
+        },
+        {
+            "id": 8,
+            "ProductName": "Hoody",
+            "ProductType": "Garment",
+            "OrderDate": "2023-04-28",
+            "Quantity": 2,
+            "Price": "1600",
+            "ProductImage": "assets/images/hoody.png"
+        },
+        {
+            "id": 9,
+            "ProductName": "Gym Ball",
+            "ProductType": "Gym Equipment",
+            "OrderDate": "2023-04-27",
+            "Quantity": 1,
+            "Price": "1000",
+            "ProductImage": "assets/images/gym-ball.png"
+        },
+        {
+            "id": 10,
+            "ProductName": "Iron Box",
+            "ProductType": "Electronic Appliance",
+            "OrderDate": "2023-04-28",
+            "Quantity": 1,
+            "Price": "1800",
+            "ProductImage": "assets/images/ironbox.png"
         }
     ]
 }

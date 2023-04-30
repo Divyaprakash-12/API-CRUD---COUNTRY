@@ -33,10 +33,17 @@ function ProductCreateBox() {
         title: "CREATE PRODUCT",
         html:
             '<input id="id" type="hidden">' +
-            '<input id="ProductType" class="swal2-input" placeholder="Product Type">' +
+            '<select id="ProductType placeholder="Product Type">' +
+            '<option value="option1">Electronic Appliances</option>' +
+            '<option value="option2">Electronic Gadget</option>' +
+            '<option value="option3">Garment</option>' +
+            '<option value="option4">Gym Equipment</option>' +
+            '<option value="option5">Sports Equipment</option>' +
+            '<option value="option6">Others</option>' +
+            '</select>' +
             '<input id="ProductName" class="swal2-input" placeholder="Product Name">' +
             '<input id="OrderDate" type="date" class="swal2-input" placeholder="Order Date">' +
-            '<input id="Quantity" type="number" class="swal2-input" placeholder="Qunatity">' +
+            '<input id="Quantity" type="input" class="swal2-input" placeholder="Quantity">' +
             '<input id="Price" class="swal2-input" placeholder="Price">',
         focusConfirm: false,
         preConfirm: () => {
@@ -90,11 +97,18 @@ function ProductEditBox(id) {
                     objects["id"] + ">" +
                     '<input id="ProductName" class="swal2-input" placeholder="Product Name" value="' +
                     objects["ProductName"] + '">' +
-                    '<input id="ProductType" class="swal2-input" placeholder="Product Type" value="' +
+                    '<select id="ProductType" class="mt-3" placeholder="Product Type" value="' +
                     objects["ProductType"] + '">' +
+                    '<option value="option1">Electronic Appliances</option>' +
+                    '<option value="option2">Electronic Gadget</option>' +
+                    '<option value="option3">Garment</option>' +
+                    '<option value="option4">Gym Equipment</option>' +
+                    '<option value="option5">Sports Equipment</option>' +
+                    '<option value="option6">Others</option>' +
+                    '</select>' +
                     '<input id="OrderDate" type="date" class="swal2-input" placeholder="OrderDate" value="' +
                     objects["OrderDate"] + '">' +
-                    '<input id="Quantity"  type="number" class="swal2-input" placeholder="Quantity" value="' +
+                    '<input id="Quantity"  type="input" class="swal2-input" placeholder="Quantity" value="' +
                     objects["Quantity"] + '">' +
                     '<input id="Price" class="swal2-input" placeholder="Price" value="' +
                     objects["Price"] + '">',
