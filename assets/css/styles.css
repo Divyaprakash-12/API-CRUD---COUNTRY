@@ -1,0 +1,41 @@
+.navbar-brand {
+    font-family: algerian;
+    font-weight: bolder;
+    font-style: normal;
+    letter-spacing: 2px;
+    font-size: xx-large;
+}
+
+body {
+    background: #FFEFBA;
+    background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);
+    background: linear-gradient(to right, #FFFFFF, #FFEFBA);
+    font-family: Times new roman;
+    font-size: x-large;
+    font-weight: bold;
+    font-style: oblique;
+}
+
+table {
+    font-family: Times new roman;
+    font-size: large;
+    font-weight: 500;
+    font-style: normal;
+}
+
+tr {
+    text-align: center;
+}
+
+#OrderDate {
+    height: 50px;
+    width: 280px;
+}
+
+.swal2-popup .form-group {
+    font-family: Times new roman;
+    font-style: normal;
+    font-weight: 700;
+    text-align: left;
+    padding: 10px;
+}

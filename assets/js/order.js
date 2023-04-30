@@ -33,14 +33,7 @@ function ProductCreateBox() {
         title: "CREATE PRODUCT",
         html:
             '<input id="id" type="hidden">' +
-            '<select id="ProductType placeholder="Product Type">' +
-            '<option value="option1">Electronic Appliances</option>' +
-            '<option value="option2">Electronic Gadget</option>' +
-            '<option value="option3">Garment</option>' +
-            '<option value="option4">Gym Equipment</option>' +
-            '<option value="option5">Sports Equipment</option>' +
-            '<option value="option6">Others</option>' +
-            '</select>' +
+            '<input id="ProductType" class="swal2-input" placeholder="Product Type">' +
             '<input id="ProductName" class="swal2-input" placeholder="Product Name">' +
             '<input id="OrderDate" type="date" class="swal2-input" placeholder="Order Date">' +
             '<input id="Quantity" type="input" class="swal2-input" placeholder="Quantity">' +
@@ -97,15 +90,8 @@ function ProductEditBox(id) {
                     objects["id"] + ">" +
                     '<input id="ProductName" class="swal2-input" placeholder="Product Name" value="' +
                     objects["ProductName"] + '">' +
-                    '<select id="ProductType" class="mt-3" placeholder="Product Type" value="' +
+                    '<input id="ProductType" class="swal2-input" placeholder="Product Type" value="' +
                     objects["ProductType"] + '">' +
-                    '<option value="option1">Electronic Appliances</option>' +
-                    '<option value="option2">Electronic Gadget</option>' +
-                    '<option value="option3">Garment</option>' +
-                    '<option value="option4">Gym Equipment</option>' +
-                    '<option value="option5">Sports Equipment</option>' +
-                    '<option value="option6">Others</option>' +
-                    '</select>' +
                     '<input id="OrderDate" type="date" class="swal2-input" placeholder="OrderDate" value="' +
                     objects["OrderDate"] + '">' +
                     '<input id="Quantity"  type="input" class="swal2-input" placeholder="Quantity" value="' +
@@ -153,30 +139,60 @@ function userEdit(id) {
 function ProductDelete(id) {
     console.log(id);
     Swal.fire({
-      title: 'WANT TO DELETE?',
-      text: "You won't be able to recover this!",
-      icon: 'error',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+        title: "WANT TO DELETE?",
+        text: "You won't be able to recover this!",
+        icon: "error",
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
-      if (result.isConfirmed) {
-        const xhttp = new XMLHttpRequest();
-        xhttp.open("DELETE", `http://localhost:3000/Orders/${id}`);
-        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        xhttp.send(
-          JSON.stringify({
-            id: id,
-          })
-        );
-        xhttp.onreadystatechange = function () {
-          if (this.readyState == 4) {
-            const objects = JSON.parse(this.responseText);
-            Swal.fire(objects["message"]);
-          }
-        };
-      }
+        if (result.isConfirmed) {
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("DELETE", `http://localhost:3000/Orders/${id}`);
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(
+                JSON.stringify({
+                    id: id,
+                })
+            );
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4) {
+                    const objects = JSON.parse(this.responseText);
+                    Swal.fire(objects["message"]);
+                }
+            };
+        }
     });
-  }
-  
+}
+function subscribe() {
+    Swal.fire({
+        title: 'WELCOME',
+        html:
+            `<form>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" id="username">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password">
+            </div>
+          </form>`,
+        showCancelButton: true,
+        confirmButtonText: 'Subscribe',
+        cancelButtonText: 'Cancel',
+        focusConfirm: false,
+        preConfirm: () => {
+            const username = Swal.getPopup().querySelector('#username').value;
+            const password = Swal.getPopup().querySelector('#password').value;
+            if (!username || !password) {
+                Swal.showValidationMessage('Please enter a username and password');
+            }
+            return { username: username, password: password };
+        }
+    }).then(result => {
+        if (result.isConfirmed) {
+        }
+    });
+}
