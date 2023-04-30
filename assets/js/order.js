@@ -163,6 +163,7 @@ function ProductDelete(id) {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
             const objects = JSON.parse(this.responseText);
+            Swal.fire(objects["message"]);
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to restore the record!",
@@ -177,6 +178,5 @@ function ProductDelete(id) {
                 }
             })
         }
-        loadTable();
     };
 }
