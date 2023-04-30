@@ -6,7 +6,7 @@
             "ProductType": "Sport Equipment",
             "OrderDate": "2023-04-28",
             "Quantity": 2,
-            "Price": "1500",
+            "Price": "1800",
             "ProductImage": "assets/images/Football.png"
         },
         {
@@ -15,7 +15,7 @@
             "ProductType": "Garment",
             "OrderDate": "2023-04-29",
             "Quantity": 5,
-            "Price": "2000",
+            "Price": "3500",
             "ProductImage": "assets/images/T-shirt.png"
         },
         {
@@ -33,7 +33,7 @@
             "ProductType": "Electronic Gadget",
             "OrderDate": "2023-04-26",
             "Quantity": 2,
-            "Price": "2000",
+            "Price": "2500",
             "ProductImage": "assets/images/earbuds.png"
         },
         {
@@ -42,7 +42,7 @@
             "ProductType": "Sports Equipment",
             "OrderDate": "2023-04-26",
             "Quantity": 4,
-            "Price": "2400",
+            "Price": "3200",
             "ProductImage": "assets/images/handball.png"
         },
         {
@@ -51,7 +51,7 @@
             "ProductType": "Electronic Gadget",
             "OrderDate": "2023-04-28",
             "Quantity": 2,
-            "Price": "3000",
+            "Price": "5000",
             "ProductImage": "assets/images/speaker.png"
         },
         {
@@ -60,7 +60,7 @@
             "ProductType": "Sports Equipment",
             "OrderDate": "2023-04-29",
             "Quantity": 5,
-            "Price": "6000",
+            "Price": "7000",
             "ProductImage": "assets/images/GN-bat.png"
         },
         {
