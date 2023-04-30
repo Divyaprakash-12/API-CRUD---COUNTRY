@@ -152,31 +152,31 @@ function userEdit(id) {
 }
 function ProductDelete(id) {
     console.log(id);
-    const xhttp = new XMLHttpRequest();
-    xhttp.open("DELETE", `http://localhost:3000/Orders/${id}`);
-    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhttp.send(
-        JSON.stringify({
+    Swal.fire({
+      title: 'WANT TO DELETE?',
+      text: "You won't be able to recover this!",
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("DELETE", `http://localhost:3000/Orders/${id}`);
+        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhttp.send(
+          JSON.stringify({
             id: id,
-        })
-    );
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4) {
+          })
+        );
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4) {
             const objects = JSON.parse(this.responseText);
             Swal.fire(objects["message"]);
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to restore the record!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
-            }).then((result) => {
-                if (result.value) {
-                    objects["message"];
-                }
-            })
-        }
-    };
-}
+          }
+        };
+      }
+    });
+  }
+  
