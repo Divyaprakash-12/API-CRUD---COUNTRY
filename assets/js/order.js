@@ -33,15 +33,30 @@ function ProductCreateBox() {
         title: "CREATE PRODUCT",
         html:
             '<input id="id" type="hidden">' +
-            '<input id="ProductType" class="swal2-input" placeholder="Product Type">' +
-            '<input id="ProductName" class="swal2-input" placeholder="Product Name">' +
-            '<input id="OrderDate" type="date" class="swal2-input" placeholder="Order Date">' +
-            '<input id="Quantity" type="input" class="swal2-input" placeholder="Quantity">' +
-            '<input id="Price" class="swal2-input" placeholder="Price">' +
+            '<input id="ProductType" class="swal2-input" placeholder="Product Type" required>' +
+            '<input id="ProductName" class="swal2-input" placeholder="Product Name" required>' +
+            '<input id="OrderDate" type="date" class="swal2-input" placeholder="Select Order Date" required>' +
+            '<input id="Quantity" type="number" class="swal2-input" placeholder="Quantity" required>' +
+            '<input id="Price" type="number" class="swal2-input" placeholder="Price" required>' +
             '<input id="ProductImage" type="file" class="swal2-input" placeholder="upload Product Image">',
         focusConfirm: false,
+        showCancelButton: true,
+        cancelButtonColor: '#d33',
         preConfirm: () => {
-            procreate();
+            const productType = document.getElementById("ProductType").value;
+            const productName = document.getElementById("ProductName").value;
+            const orderDate = document.getElementById("OrderDate").value;
+            const quantity = parseInt(document.getElementById("Quantity").value);
+            const price = parseFloat(document.getElementById("Price").value);
+            if (!productType || !productName || !orderDate || !quantity || !price) {
+                Swal.showValidationMessage("Please fill in all the fields");
+            } else if (isNaN(quantity) || isNaN(price)) {
+                Swal.showValidationMessage("Quantity and Price must be numbers");
+            } else if (quantity <= 0 || price < 0) {
+                Swal.showValidationMessage("Quantity must be greater than 0 and Price must not be negative");
+            } else {
+                procreate();
+            }
         }
     });
 }
@@ -86,7 +101,11 @@ function procreate() {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 const objects = JSON.parse(this.responseText);
-                Swal.fire(objects["message"]);
+                Swal.fire({
+                    icon:'success',
+                    title:'Product added',
+                    text: objects["message"]
+                });
                 loadTable();
             }
         };
@@ -123,7 +142,7 @@ function ProductEditBox(id) {
                     objects["ProductName"] + '">' +
                     '<input id="ProductType" class="swal2-input" placeholder="Product Type" value="' +
                     objects["ProductType"] + '">' +
-                    '<input id="OrderDate" type="date" class="swal2-input" placeholder="OrderDate" value="' +
+                    '<input id="OrderDate" type="date" class="swal2-input" placeholder="Select Order Date" value="' +
                     objects["OrderDate"] + '">' +
                     '<input id="Quantity"  type="input" class="swal2-input" placeholder="Quantity" value="' +
                     objects["Quantity"] + '">' +
@@ -132,9 +151,24 @@ function ProductEditBox(id) {
                     '<input id="ProductImage" type="file" class="swal2-input" placeholder="ProductImage" value="' +
                     objects["ProductImage"] + '">',
                 focusConfirm: false,
+                showCancelButton: true,
+                cancelButtonColor: '#d33',
                 preConfirm: () => {
-                    ProductEdit(id);
-                },
+                    const productType = document.getElementById("ProductType").value;
+                    const productName = document.getElementById("ProductName").value;
+                    const orderDate = document.getElementById("OrderDate").value;
+                    const quantity = parseInt(document.getElementById("Quantity").value);
+                    const price = parseFloat(document.getElementById("Price").value);
+                    if (!productType || !productName || !orderDate || !quantity || !price) {
+                        Swal.showValidationMessage("Please fill in all the fields");
+                    } else if (isNaN(quantity) || isNaN(price)) {
+                        Swal.showValidationMessage("Quantity and Price must be numbers");
+                    } else if (quantity <= 0 || price < 0) {
+                        Swal.showValidationMessage("Quantity must be greater than 0 and Price must not be negative");
+                    } else {
+                        ProductEdit(id);
+                    }
+                }
             });
         }
     };
@@ -182,12 +216,15 @@ function ProductEdit(id) {
             })
         );
     }
-
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             const objects = JSON.parse(this.responseText);
-            Swal.fire(objects["message"]);
             loadTable();
+            Swal.fire({
+                title: 'Product Edited',
+                text: objects["message"],
+                icon: 'success'
+            });
         }
     };
 }
@@ -203,7 +240,8 @@ function ProductDelete(id) {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
-        if (result.isConfirmed) {
+        console.log('result:', result);
+        if (result.value) {
             const xhttp = new XMLHttpRequest();
             xhttp.open("DELETE", `http://localhost:3000/Orders/${id}`);
             xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -215,12 +253,17 @@ function ProductDelete(id) {
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4) {
                     const objects = JSON.parse(this.responseText);
-                    Swal.fire(objects["message"]);
+                    Swal.fire({
+                        title: 'Deleted!',
+                        text: objects["message"],
+                        icon: 'success'
+                    });
                 }
             };
         }
     });
 }
+
 function subscribe() {
     Swal.fire({
         title: 'WELCOME',
@@ -249,6 +292,11 @@ function subscribe() {
         }
     }).then(result => {
         if (result.isConfirmed) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Subscribed!',
+                text: `Welcome ${result.value.username} you are a member now!`
+            });
         }
     });
 }
