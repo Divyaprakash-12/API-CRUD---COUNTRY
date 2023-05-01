@@ -1,3 +1,4 @@
+/*navigation bar*/
 .navbar-brand {
     font-family: algerian;
     font-weight: bolder;
@@ -6,6 +7,7 @@
     font-size: xx-large;
 }
 
+/*body*/
 body {
     background: #FFEFBA;
     background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);
@@ -16,6 +18,7 @@ body {
     font-style: oblique;
 }
 
+/*table*/
 table {
     font-family: Times new roman;
     font-size: large;
@@ -32,7 +35,7 @@ tr {
     width: 280px;
 }
 
-
+/*sweetalert form*/
 .swal2-popup .form-group {
     font-family: Times new roman;
     font-style: normal;

@@ -1,3 +1,4 @@
+/*table display*/
 function loadTable() {
     const xhttp = new XMLHttpRequest
     xhttp.open("GET", "http://localhost:3000/Orders");
@@ -28,6 +29,7 @@ function loadTable() {
 }
 loadTable();
 
+/*new record create box*/
 function ProductCreateBox() {
     Swal.fire({
         title: "CREATE PRODUCT",
@@ -61,6 +63,7 @@ function ProductCreateBox() {
     });
 }
 
+/*creating and displaying new record*/
 function procreate() {
     const ProductType = document.getElementById("ProductType").value;
     const ProductName = document.getElementById("ProductName").value;
@@ -124,6 +127,7 @@ function procreate() {
     }
 }
 
+/*record editing box*/
 function ProductEditBox(id) {
     console.log(id);
     const xhttp = new XMLHttpRequest();
@@ -174,6 +178,7 @@ function ProductEditBox(id) {
     };
 }
 
+/*updating edited record and display*/
 function ProductEdit(id) {
     const ProductType = document.getElementById("ProductType").value;
     const ProductName = document.getElementById("ProductName").value;
@@ -229,6 +234,7 @@ function ProductEdit(id) {
     };
 }
 
+/*record deletion*/
 function ProductDelete(id) {
     console.log(id);
     Swal.fire({
@@ -264,6 +270,7 @@ function ProductDelete(id) {
     });
 }
 
+/*subscription*/
 function subscribe() {
     Swal.fire({
         title: 'WELCOME',
