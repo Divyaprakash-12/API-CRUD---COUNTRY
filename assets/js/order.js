@@ -82,7 +82,11 @@ function procreate() {
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     const objects = JSON.parse(this.responseText);
-                    Swal.fire(objects["message"]);
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Product added',
+                        text: objects["message"]
+                    });
                     loadTable();
                 }
             };
@@ -105,8 +109,8 @@ function procreate() {
             if (this.readyState == 4 && this.status == 200) {
                 const objects = JSON.parse(this.responseText);
                 Swal.fire({
-                    icon:'success',
-                    title:'Product added',
+                    icon: 'success',
+                    title: 'Product added',
                     text: objects["message"]
                 });
                 loadTable();
@@ -126,6 +130,7 @@ function procreate() {
         );
     }
 }
+
 
 /*record editing box*/
 function ProductEditBox(id) {
@@ -240,14 +245,13 @@ function ProductDelete(id) {
     Swal.fire({
         title: "WANT TO DELETE?",
         text: "You won't be able to recover this!",
-        icon: "error",
+        icon: "warning",
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
-        console.log('result:', result);
-        if (result.value) {
+        if (result.isConfirmed) {
             const xhttp = new XMLHttpRequest();
             xhttp.open("DELETE", `http://localhost:3000/Orders/${id}`);
             xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -257,18 +261,19 @@ function ProductDelete(id) {
                 })
             );
             xhttp.onreadystatechange = function () {
-                if (this.readyState == 4) {
+                if (this.readyState == 4 && this.status == 200) {
                     const objects = JSON.parse(this.responseText);
                     Swal.fire({
                         title: 'Deleted!',
                         text: objects["message"],
                         icon: 'success'
-                    });
+                    })
                 }
             };
         }
     });
 }
+
 
 /*subscription*/
 function subscribe() {
