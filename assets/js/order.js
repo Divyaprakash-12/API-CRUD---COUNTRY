@@ -37,12 +37,13 @@ function ProductCreateBox() {
             '<input id="ProductName" class="swal2-input" placeholder="Product Name">' +
             '<input id="OrderDate" type="date" class="swal2-input" placeholder="Order Date">' +
             '<input id="Quantity" type="input" class="swal2-input" placeholder="Quantity">' +
-            '<input id="Price" class="swal2-input" placeholder="Price">',
+            '<input id="Price" class="swal2-input" placeholder="Price">' +
+            '<input id="ProductImage" type="file" class="swal2-input" placeholder="upload Product Image">',
         focusConfirm: false,
         preConfirm: () => {
             procreate();
         }
-    })
+    });
 }
 
 function procreate() {
@@ -51,27 +52,57 @@ function procreate() {
     const OrderDate = document.getElementById("OrderDate").value;
     const Quantity = document.getElementById("Quantity").value;
     const Price = document.getElementById("Price").value;
+    const ProductImageInput = document.getElementById("ProductImage");
+    const ProductImage = ProductImageInput.files[0];
 
     const xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "http://localhost:3000/Orders");
-    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhttp.send(
-        JSON.stringify({
-            ProductType: ProductType,
-            ProductName: ProductName,
-            OrderDate: OrderDate,
-            Quantity: Quantity,
-            Price: Price,
-            ProductImage: "https://www.melivecode.com/users/1.png",
-        })
-    );
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            const objects = JSON.parse(this.responseText);
-            Swal.fire(objects["message"]);
-            loadTable();
-        }
-    };
+
+    if (ProductImage) {
+        const reader = new FileReader();
+        reader.onload = function () {
+            const dataUrl = reader.result;
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const objects = JSON.parse(this.responseText);
+                    Swal.fire(objects["message"]);
+                    loadTable();
+                }
+            };
+            xhttp.open("POST", "http://localhost:3000/Orders");
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(
+                JSON.stringify({
+                    ProductType: ProductType,
+                    ProductName: ProductName,
+                    OrderDate: OrderDate,
+                    Quantity: Quantity,
+                    Price: Price,
+                    ProductImage: dataUrl,
+                })
+            );
+        };
+        reader.readAsDataURL(ProductImage);
+    } else {
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const objects = JSON.parse(this.responseText);
+                Swal.fire(objects["message"]);
+                loadTable();
+            }
+        };
+        xhttp.open("POST", "http://localhost:3000/Orders");
+        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhttp.send(
+            JSON.stringify({
+                ProductType: ProductType,
+                ProductName: ProductName,
+                OrderDate: OrderDate,
+                Quantity: Quantity,
+                Price: Price,
+                ProductImage: null,
+            })
+        );
+    }
 }
 
 function ProductEditBox(id) {
@@ -97,37 +128,61 @@ function ProductEditBox(id) {
                     '<input id="Quantity"  type="input" class="swal2-input" placeholder="Quantity" value="' +
                     objects["Quantity"] + '">' +
                     '<input id="Price" class="swal2-input" placeholder="Price" value="' +
-                    objects["Price"] + '">',
+                    objects["Price"] + '">' +
+                    '<input id="ProductImage" type="file" class="swal2-input" placeholder="ProductImage" value="' +
+                    objects["ProductImage"] + '">',
                 focusConfirm: false,
                 preConfirm: () => {
-                    userEdit();
+                    ProductEdit(id);
                 },
             });
         }
     };
 }
 
-function userEdit(id) {
+function ProductEdit(id) {
     const ProductType = document.getElementById("ProductType").value;
     const ProductName = document.getElementById("ProductName").value;
     const OrderDate = document.getElementById("OrderDate").value;
     const Quantity = document.getElementById("Quantity").value;
     const Price = document.getElementById("Price").value;
+    const ProductImageInput = document.getElementById("ProductImage");
+    const ProductImage = ProductImageInput.files[0];
     console.log(id);
     console.log(ProductName);
     const xhttp = new XMLHttpRequest();
     xhttp.open("PUT", `http://localhost:3000/Orders/${id}`);
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhttp.send(
-        JSON.stringify({
-            ProductType: ProductType,
-            ProductName: ProductName,
-            OrderDate: OrderDate,
-            Quantity: Quantity,
-            Price: Price,
-            ProductImage: "https://www.melivecode.com/users/1.png",
-        })
-    );
+
+    if (ProductImage) {
+        const reader = new FileReader();
+        reader.onload = function () {
+            const dataUrl = reader.result;
+            xhttp.send(
+                JSON.stringify({
+                    ProductType: ProductType,
+                    ProductName: ProductName,
+                    OrderDate: OrderDate,
+                    Quantity: Quantity,
+                    Price: Price,
+                    ProductImage: dataUrl,
+                })
+            );
+        };
+        reader.readAsDataURL(ProductImage);
+    } else {
+        xhttp.send(
+            JSON.stringify({
+                ProductType: ProductType,
+                ProductName: ProductName,
+                OrderDate: OrderDate,
+                Quantity: Quantity,
+                Price: Price,
+                ProductImage: null,
+            })
+        );
+    }
+
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             const objects = JSON.parse(this.responseText);
@@ -136,6 +191,7 @@ function userEdit(id) {
         }
     };
 }
+
 function ProductDelete(id) {
     console.log(id);
     Swal.fire({

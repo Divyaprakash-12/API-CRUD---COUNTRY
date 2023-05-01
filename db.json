@@ -1,13 +1,13 @@
 {
   "Orders": [
     {
-      "id": 1,
-      "ProductName": "Football",
       "ProductType": "Sport Equipment",
+      "ProductName": "Football",
       "OrderDate": "2023-04-28",
-      "Quantity": 2,
+      "Quantity": "2",
       "Price": "1800",
-      "ProductImage": "assets/images/Football.png"
+      "ProductImage": "assets/images/Football.png",
+      "id": 1
     },
     {
       "id": 2,
@@ -55,13 +55,13 @@
       "ProductImage": "assets/images/speaker.png"
     },
     {
-      "id": 7,
-      "ProductName": "Cricket Bat",
       "ProductType": "Sports Equipment",
+      "ProductName": "Cricket Bat",
       "OrderDate": "2023-04-29",
-      "Quantity": 5,
+      "Quantity": "5",
       "Price": "7000",
-      "ProductImage": "assets/images/GN-bat.png"
+      "ProductImage": "assets/images/GN-bat.png",
+      "id": 7
     },
     {
       "id": 8,
